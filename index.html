@@ -11,8 +11,8 @@
 <link rel="manifest" id="manifestLink">
 <link rel="apple-touch-icon" id="touchIcon">
 <style>
-:root{--bg:#f7f5f0;--panel:#fffefb;--ink:#181a20;--sub:#6f7480;--line:#e8e3d9;--accent:#8a6b4d;--accent2:#b08968;--reader-bg:#fcfaf5;--reader-ink:#22252c;--shadow:0 20px 55px rgba(24,20,14,.10)}
-[data-theme="dark"]{--bg:#0e0f13;--panel:#16181d;--ink:#eceae4;--sub:#9aa0a6;--line:#272b32;--accent:#c8a27a;--accent2:#a97f56;--reader-bg:#121419;--reader-ink:#d9d6cf;--shadow:0 20px 55px rgba(0,0,0,.45)}
+:root{--bg:#0f1116;--panel:#161920;--ink:#eceae4;--sub:#9aa0a6;--line:#272b32;--accent:#c8a27a;--accent2:#a97f56;--reader-bg:#121419;--reader-ink:#d9d6cf;--shadow:0 20px 55px rgba(0,0,0,.45)}
+[data-theme="light"]{--bg:#f7f5f0;--panel:#fffefb;--ink:#181a20;--sub:#6f7480;--line:#e8e3d9;--accent:#8a6b4d;--accent2:#b08968;--reader-bg:#fcfaf5;--reader-ink:#22252c;--shadow:0 20px 55px rgba(24,20,14,.10)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Apple SD Gothic Neo",sans-serif;overscroll-behavior:none}
@@ -21,18 +21,31 @@ input,select,textarea{font:inherit}
 .view{display:none;min-height:100dvh}
 .view.active{display:block}
 #home,#library{width:100%;max-width:560px;margin:0 auto}
-#home{display:flex;align-items:center;justify-content:center;padding:34px 22px;background:radial-gradient(900px 480px at 82% -8%,rgba(176,137,104,.16),transparent),radial-gradient(680px 420px at 0% 100%,rgba(138,107,77,.10),transparent),var(--bg)}
-.home-card{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:30px;box-shadow:var(--shadow);padding:42px 30px;text-align:center}
-.brand-mark{width:66px;height:66px;margin:0 auto 20px;border-radius:21px;background:linear-gradient(145deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#fff;font-weight:800;font-size:31px;box-shadow:0 14px 30px rgba(138,107,77,.28)}
-h1.brand{margin:0;font-size:35px;font-weight:800;letter-spacing:-.035em}
-.brand-sub{margin:9px 0 34px;color:var(--sub);font-size:11.5px;letter-spacing:.18em;font-weight:600}
-.home-actions{display:grid;gap:12px}
-.action{display:flex;align-items:center;gap:15px;padding:17px 18px;border:1px solid var(--line);border-radius:20px;background:var(--bg);text-align:left;transition:transform .18s;min-width:0}
-.action:active{transform:scale(.985)}
-.action .ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--panel);border:1px solid var(--line);flex:0 0 auto}
-.action b{display:block;font-size:16px;letter-spacing:-.01em}
-.action span{display:block;color:var(--sub);font-size:12.5px;margin-top:3px}
-.privacy{margin-top:28px;color:var(--sub);font-size:12px;line-height:1.75}
+
+/* ---- HOME ---- */
+#home{display:flex;flex-direction:column;min-height:100dvh;background:
+ radial-gradient(120% 70% at 50% -10%,rgba(200,162,122,.16),transparent 60%),
+ radial-gradient(90% 50% at 50% 110%,rgba(169,127,86,.10),transparent),var(--bg)}
+.hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top) + 30px) 28px 10px;text-align:center}
+.hero-art{width:min(300px,74vw);margin-bottom:6px;filter:drop-shadow(0 24px 45px rgba(0,0,0,.28))}
+.hero h1{margin:18px 0 0;font-size:44px;font-weight:800;letter-spacing:-.05em}
+.hero .tag{margin:12px 0 0;color:var(--sub);font-size:13.5px;letter-spacing:.02em;line-height:1.7}
+.hero .rule{width:38px;height:2px;border-radius:9px;background:linear-gradient(90deg,var(--accent),var(--accent2));margin:22px auto 0;opacity:.85}
+.home-bottom{padding:10px 24px calc(env(safe-area-inset-bottom) + 30px)}
+.resume{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:color-mix(in srgb,var(--panel) 88%,transparent);border:1px solid var(--line);border-radius:20px;padding:15px 16px;margin-bottom:16px;backdrop-filter:blur(14px);box-shadow:var(--shadow)}
+.resume .rc{width:42px;height:56px;border-radius:9px;background:linear-gradient(150deg,var(--accent),var(--accent2));color:#fff;display:grid;place-items:center;font-weight:800;font-size:17px;flex:0 0 auto}
+.resume-main{flex:1;min-width:0}
+.resume-main small{display:block;color:var(--accent);font-size:10.5px;font-weight:750;letter-spacing:.16em;margin-bottom:4px}
+.resume-main b{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.resume-main span{display:block;color:var(--sub);font-size:12px;margin-top:3px}
+.resume .go{color:var(--sub);font-size:18px}
+.quick{display:flex;justify-content:center;gap:26px}
+.quick button{display:grid;justify-items:center;gap:9px;width:82px}
+.quick .qi{width:62px;height:62px;border-radius:22px;display:grid;place-items:center;background:color-mix(in srgb,var(--panel) 90%,transparent);border:1px solid var(--line);box-shadow:0 12px 28px rgba(0,0,0,.14);backdrop-filter:blur(14px);transition:transform .18s}
+.quick button:active .qi{transform:scale(.94)}
+.quick small{color:var(--sub);font-size:12px;font-weight:650;letter-spacing:.02em}
+
+/* ---- LIBRARY ---- */
 .topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;padding:calc(env(safe-area-inset-top) + 15px) 18px 15px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
 .topbar h2{margin:0;font-size:20px;font-weight:800;letter-spacing:-.02em;flex:1}
 .icon-btn{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:var(--panel);border:1px solid var(--line);flex:0 0 auto}
@@ -40,7 +53,7 @@ h1.brand{margin:0;font-size:35px;font-weight:800;letter-spacing:-.035em}
 .tab{padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--sub);font-size:13.5px;font-weight:650}
 .tab.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .list{padding:14px 18px calc(env(safe-area-inset-bottom) + 40px);display:grid;gap:10px;width:100%}
-.book{display:flex;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:15px;box-shadow:0 8px 22px rgba(0,0,0,.04);width:100%;min-width:0;overflow:hidden}
+.book{display:flex;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:15px;box-shadow:0 8px 22px rgba(0,0,0,.06);width:100%;min-width:0;overflow:hidden}
 .cover{width:48px;height:66px;border-radius:10px;background:linear-gradient(150deg,var(--accent),var(--accent2));color:#fff;display:grid;place-items:center;font-weight:800;font-size:19px;flex:0 0 auto}
 .book-main{flex:1 1 auto;min-width:0;overflow:hidden}
 .book-title{font-weight:700;font-size:15px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;word-break:keep-all}
@@ -48,6 +61,8 @@ h1.brand{margin:0;font-size:35px;font-weight:800;letter-spacing:-.035em}
 .bar{height:3px;border-radius:99px;background:var(--line);margin-top:10px;overflow:hidden}
 .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
 .empty{text-align:center;color:var(--sub);padding:76px 24px;font-size:14px;line-height:1.8}
+
+/* ---- READER ---- */
 #reader{background:var(--reader-bg);color:var(--reader-ink)}
 .reader-scroll{height:100dvh;overflow-y:auto;padding:calc(env(safe-area-inset-top) + 88px) 24px calc(env(safe-area-inset-bottom) + 132px)}
 .article{max-width:660px;margin:0 auto}
@@ -72,7 +87,7 @@ p.dlg{margin:0 0 1.4em;padding-left:16px;border-left:2px solid color-mix(in srgb
 .control{display:grid;gap:9px;margin-bottom:20px}
 .control label{font-size:12px;color:var(--sub);font-weight:700;letter-spacing:.06em}
 .control input[type=range]{width:100%;accent-color:var(--accent)}
-.control select,.control input[type=text]{width:100%;padding:13px 15px;border-radius:15px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.control select{width:100%;padding:13px 15px;border-radius:15px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
 .row{display:flex;gap:8px}
 .chip{flex:1;padding:12px;border-radius:15px;border:1px solid var(--line);background:var(--bg);font-weight:700;font-size:13px}
 .chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
@@ -84,31 +99,62 @@ textarea{width:100%;min-height:230px;border-radius:18px;border:1px solid var(--l
 .toast.show{opacity:1;transform:translateX(-50%)}
 </style>
 </head>
-<body data-theme="light">
+<body data-theme="dark">
+
 <section id="home" class="view active">
-  <div class="home-card">
-    <div class="brand-mark">결</div><h1 class="brand">책결</h1>
-    <div class="brand-sub">QUIET READING, BEAUTIFULLY KEPT</div>
-    <div class="home-actions">
-      <button class="action" onclick="showView('library')"><div class="ic">📚</div><div><b>서재</b><span>읽던 책을 이어서 읽기</span></div></button>
-      <button class="action" onclick="openPaste()"><div class="ic">📝</div><div><b>TXT 붙여넣기</b><span>복사한 원고·소설을 바로 읽기</span></div></button>
-      <button class="action" onclick="document.getElementById('fileInput').click()"><div class="ic">📂</div><div><b>파일 열기</b><span>TXT · DOCX · PDF · EPUB · MD · HTML</span></div></button>
+  <div class="hero">
+    <svg class="hero-art" viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="책결 일러스트">
+      <defs>
+        <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4ead8"/><stop offset="1" stop-color="#e6d6bd"/></linearGradient>
+        <linearGradient id="th" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#c8a27a"/><stop offset="1" stop-color="#a97f56"/></linearGradient>
+        <radialGradient id="glow" cx=".5" cy=".4" r=".65"><stop stop-color="#c8a27a" stop-opacity=".28"/><stop offset="1" stop-color="#c8a27a" stop-opacity="0"/></radialGradient>
+      </defs>
+      <circle cx="160" cy="112" r="118" fill="url(#glow)"/>
+      <circle cx="52" cy="46" r="1.8" fill="#c8a27a" opacity=".8"/><circle cx="276" cy="38" r="1.4" fill="#c8a27a" opacity=".6"/>
+      <circle cx="292" cy="96" r="1.7" fill="#c8a27a" opacity=".7"/><circle cx="30" cy="120" r="1.3" fill="#c8a27a" opacity=".55"/>
+      <circle cx="248" cy="196" r="1.5" fill="#c8a27a" opacity=".5"/><circle cx="70" cy="200" r="1.6" fill="#c8a27a" opacity=".6"/>
+      <path d="M160 74c-24-14-52-18-78-12v104c26-6 54-2 78 12V74Z" fill="url(#pg)"/>
+      <path d="M160 74c24-14 52-18 78-12v104c-26-6-54-2-78 12V74Z" fill="#fbf4e6"/>
+      <path d="M160 74v104" stroke="#b39572" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M96 96h44M96 116h38M96 136h44M180 96h44M186 116h38M180 136h44" stroke="#b8a184" stroke-width="2.2" stroke-linecap="round" opacity=".65"/>
+      <path d="M82 62c30-8 60-3 78 12 18-15 48-20 78-12v116c-30-8-60-3-78 12-18-15-48-20-78-12V62Z" stroke="#8a6b4d" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M160 150c-14-22 8-38 2-54-5-14 8-24 20-18" stroke="url(#th)" stroke-width="4" stroke-linecap="round"/>
+      <path d="M160 150c16-18-4-34 6-48 8-12-2-24-14-22" stroke="url(#th)" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="168" cy="78" r="7" fill="none" stroke="url(#th)" stroke-width="4"/>
+      <circle cx="160" cy="150" r="5" fill="#c8a27a"/>
+    </svg>
+    <h1>책결</h1>
+    <div class="rule"></div>
+    <p class="tag">읽던 페이지가 이어지고,<br>책들이 조용히 하나로 이어지는 서재</p>
+  </div>
+  <div class="home-bottom">
+    <button class="resume" id="resumeCard" hidden onclick="resumeLast()">
+      <div class="rc" id="resumeInitial">결</div>
+      <div class="resume-main"><small>이어 읽기</small><b id="resumeTitle"></b><span id="resumeMeta"></span></div>
+      <div class="go">→</div>
+    </button>
+    <div class="quick">
+      <button onclick="showView('library')"><div class="qi">📚</div><small>서재</small></button>
+      <button onclick="openPaste()"><div class="qi">📝</div><small>붙여넣기</small></button>
+      <button onclick="document.getElementById('fileInput').click()"><div class="qi">📂</div><small>파일 열기</small></button>
     </div>
-    <p class="privacy">모든 책과 읽은 위치는 이 기기의 브라우저에만 저장됩니다.<br>홈 화면과 서재는 분리되어 있으며, 외부로 전송되지 않습니다.</p>
   </div>
   <input id="fileInput" type="file" accept=".txt,.docx,.pdf,.epub,.md,.markdown,.html,.htm,text/plain,application/pdf,application/epub+zip" style="display:none">
 </section>
+
 <section id="library" class="view">
   <div class="topbar"><button class="icon-btn" onclick="showView('home')">←</button><h2>서재</h2><button class="icon-btn" onclick="document.getElementById('fileInput').click()">＋</button></div>
   <div class="tabs"><button class="tab on" id="tabReading" onclick="setTab('reading')">읽고 있는 책</button><button class="tab" id="tabFinished" onclick="setTab('finished')">다 읽은 책</button></div>
   <div class="list" id="bookList"></div>
 </section>
+
 <section id="reader" class="view">
   <div class="reader-scroll" id="readerScroll"><article class="article" id="article"></article></div>
   <div class="fab-wrap" id="fabWrap"><div class="fab">
     <button title="서재" onclick="closeReader()">📚</button><button title="목차" onclick="openSheet('tocSheet')">☰</button><button title="본문 설정" onclick="openSheet('typeSheet')">Aa</button><button title="음성 읽기" onclick="openSheet('ttsSheet')">🔊</button><button title="책갈피" onclick="addBookmark()">🔖</button>
   </div></div>
 </section>
+
 <div class="sheet" id="typeSheet"><div class="sheet-bg" onclick="closeSheets()"></div><div class="sheet-card">
   <div class="sheet-head"><h3>본문 설정</h3><button class="icon-btn" onclick="closeSheets()">✕</button></div>
   <div class="control"><label>글꼴</label><select id="fontSelect" onchange="applyType()"><option value="'Noto Serif KR','Nanum Myeongjo',serif">명조 — 소설·문학</option><option value="'Apple SD Gothic Neo','Noto Sans KR',sans-serif">산세리프 — 현대·깔끔</option><option value="Georgia,'Nanum Myeongjo',serif">Georgia — 클래식</option><option value="ui-monospace,SFMono-Regular,Menlo,monospace">모노 — 집중 독서</option></select></div>
@@ -133,14 +179,15 @@ textarea{width:100%;min-height:230px;border-radius:18px;border:1px solid var(--l
   <button class="primary" onclick="savePasted()">서재에 추가하고 읽기</button>
 </div></div>
 <div class="toast" id="toast"></div>
+
 <script>
 let books=[],current=null,tab='reading',lastY=0,saveTimer=null;
 const icon='data:image/svg+xml,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="112" fill="#171a20"/><rect x="118" y="112" width="276" height="288" rx="26" fill="#f6f2ea"/><rect x="118" y="112" width="42" height="288" fill="#8a6b4d"/><rect x="196" y="176" width="150" height="16" rx="8" fill="#2a2d34"/><rect x="196" y="216" width="118" height="12" rx="6" fill="#8a6b4d"/><rect x="196" y="252" width="150" height="12" rx="6" fill="#c9c2b4"/><rect x="196" y="288" width="132" height="12" rx="6" fill="#c9c2b4"/></svg>`);
 document.getElementById('touchIcon').href=icon;
-const manifest={name:'책결 — 프리미엄 독서',short_name:'책결',start_url:'.',display:'standalone',background_color:'#0e0f13',theme_color:'#0e0f13',icons:[{src:icon,sizes:'512x512',type:'image/svg+xml',purpose:'any'},{src:icon,sizes:'192x192',type:'image/svg+xml',purpose:'any'}]};
+const manifest={name:'책결 — 프리미엄 독서',short_name:'책결',start_url:'.',display:'standalone',background_color:'#0f1116',theme_color:'#0f1116',icons:[{src:icon,sizes:'512x512',type:'image/svg+xml',purpose:'any'},{src:icon,sizes:'192x192',type:'image/svg+xml',purpose:'any'}]};
 document.getElementById('manifestLink').href='data:application/manifest+json,'+encodeURIComponent(JSON.stringify(manifest));
 if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{});}
-function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');if(id==='library')renderLibrary();}
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');if(id==='library')renderLibrary();if(id==='home')renderResume();}
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1900);}
 function openSheet(id){closeSheets();document.getElementById(id).classList.add('open');}
 function openPaste(){openSheet('pasteSheet');}
@@ -149,6 +196,18 @@ function db(){return new Promise((res,rej)=>{const r=indexedDB.open('chaekgyeol-
 async function saveBook(b){const d=await db();return new Promise((res,rej)=>{const tx=d.transaction('books','readwrite');tx.objectStore('books').put(b);tx.oncomplete=res;tx.onerror=()=>rej(tx.error);});}
 async function loadBooks(){const d=await db();return new Promise((res,rej)=>{const tx=d.transaction('books','readonly');const q=tx.objectStore('books').getAll();q.onsuccess=()=>res(q.result||[]);q.onerror=()=>rej(q.error);});}
 async function removeBook(id){const d=await db();return new Promise(res=>{const tx=d.transaction('books','readwrite');tx.objectStore('books').delete(id);tx.oncomplete=res;});}
+async function renderResume(){
+  books=await loadBooks();
+  const last=books.filter(b=>!b.finished&&(b.progress||0)>0.005).sort((a,b)=>(b.addedAt)-(a.addedAt))[0];
+  const card=document.getElementById('resumeCard');
+  if(!last){card.hidden=true;return;}
+  card.hidden=false;
+  document.getElementById('resumeInitial').textContent=(last.title||'책')[0];
+  document.getElementById('resumeTitle').textContent=last.title;
+  document.getElementById('resumeMeta').textContent=`${last.format||'TXT'} · ${Math.round((last.progress||0)*100)}%까지 읽음`;
+  card.onclick=()=>openBook(last.id);
+}
+function resumeLast(){const c=document.getElementById('resumeCard');if(!c.hidden)c.click();}
 async function decodeBytes(buf){try{return new TextDecoder('utf-8',{fatal:true}).decode(buf);}catch(e){}try{return new TextDecoder('euc-kr').decode(buf);}catch(e){}try{return new TextDecoder('windows-1252').decode(buf);}catch(e){}return new TextDecoder().decode(buf);}
 function stripHtml(s){const doc=new DOMParser().parseFromString(s,'text/html');doc.querySelectorAll('script,style,nav,header,footer').forEach(n=>n.remove());doc.querySelectorAll('h1,h2,h3,h4').forEach(h=>h.textContent='\n\n## '+h.textContent.trim()+'\n\n');doc.querySelectorAll('p,div,br,li').forEach(n=>n.insertAdjacentText('afterend','\n'));return doc.body.textContent.replace(/\r/g,'').replace(/\n{3,}/g,'\n\n').trim();}
 async function unzip(buf){const dv=new DataView(buf);let end=-1;for(let i=buf.byteLength-22;i>=0;i--){if(dv.getUint32(i,true)===0x06054b50){end=i;break;}}if(end<0)throw new Error('ZIP 구조를 읽을 수 없습니다.');const n=dv.getUint16(end+10,true);let p=dv.getUint32(end+16,true);const files={};const dec=new TextDecoder();for(let i=0;i<n;i++){const method=dv.getUint16(p+10,true),size=dv.getUint32(p+20,true),nl=dv.getUint16(p+28,true),el=dv.getUint16(p+30,true),cl=dv.getUint16(p+32,true),lho=dv.getUint32(p+42,true);const name=dec.decode(new Uint8Array(buf,p+46,nl));const lnl=dv.getUint16(lho+26,true),lel=dv.getUint16(lho+28,true),start=lho+30+lnl+lel;const raw=new Uint8Array(buf,start,size);let out;if(method===0)out=raw;else out=new Uint8Array(await new Response(new Blob([raw]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer());files[name]=out;p+=46+nl+el+cl;}return files;}
@@ -178,7 +237,7 @@ let ttsQueue=[],ttsIndex=0;
 function startTTS(){stopTTS();if(!current)return;const start=Math.max(0,current.text.indexOf(visibleFirstText()));const chunks=current.text.slice(start).match(/[^.!?\n…]+[.!?\n…]*\s*/g)||[current.text];ttsQueue=[];let buf='';for(const c of chunks){buf+=c;if(buf.length>220){ttsQueue.push(buf.trim());buf='';}}if(buf.trim())ttsQueue.push(buf.trim());ttsIndex=0;speakNext();}
 function speakNext(){if(ttsIndex>=ttsQueue.length)return;const u=new SpeechSynthesisUtterance(ttsQueue[ttsIndex++]);u.lang='ko-KR';u.rate=+document.getElementById('rateRange').value;u.onend=speakNext;u.onerror=speakNext;speechSynthesis.speak(u);}
 function stopTTS(){speechSynthesis.cancel();ttsQueue=[];ttsIndex=0;}
-(async()=>{books=await loadBooks();})();
+(async()=>{books=await loadBooks();renderResume();})();
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheets();});
 </script>
 </body>
